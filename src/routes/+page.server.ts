@@ -24,7 +24,7 @@ import { data } from '$lib/sampleData';
 // };
 
 export const load = async () => {
-	console.log('data', data);
+	// console.log('data', data);
 
 	return {
 		collections: data
