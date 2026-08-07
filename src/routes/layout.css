@@ -1,8 +1,8 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
-@import "shadcn-svelte/tailwind.css";
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/space-grotesk";
+@import 'tw-animate-css';
+@import 'shadcn-svelte/tailwind.css';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -39,6 +39,18 @@
 	--sidebar-accent-foreground: oklch(0.205 0 0);
 	--sidebar-border: oklch(0.922 0 0);
 	--sidebar-ring: oklch(0.708 0 0);
+
+	--info: oklch(0.546 0.215 250);
+	--info-foreground: oklch(0.97 0.014 254.604);
+	--info-subtle: oklch(0.95 0.04 250);
+
+	--warning: oklch(0.68 0.18 75);
+	--warning-foreground: oklch(0.2 0.05 75);
+	--warning-subtle: oklch(0.96 0.05 75);
+
+	--danger: oklch(0.577 0.245 27.325); /* Reuses your --destructive baseline */
+	--danger-foreground: oklch(0.97 0.014 254.604);
+	--danger-subtle: oklch(0.95 0.05 27.325);
 }
 
 .dark {
@@ -73,6 +85,18 @@
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
+
+	--info: oklch(0.623 0.214 250);
+	--info-foreground: oklch(0.97 0.014 254.604);
+	--info-subtle: oklch(0.24 0.06 250);
+
+	--warning: oklch(0.78 0.16 75);
+	--warning-foreground: oklch(0.18 0.05 75);
+	--warning-subtle: oklch(0.26 0.06 75);
+
+	--danger: oklch(0.704 0.191 22.216); /* Matches dark --destructive baseline */
+	--danger-foreground: oklch(0.15 0.05 22.216);
+	--danger-subtle: oklch(0.25 0.06 22.216);
 }
 
 @theme inline {
@@ -116,6 +140,18 @@
 	--radius-2xl: calc(var(--radius) * 1.8);
 	--radius-3xl: calc(var(--radius) * 2.2);
 	--radius-4xl: calc(var(--radius) * 2.6);
+
+	--color-info: var(--info);
+	--color-info-foreground: var(--info-foreground);
+	--color-info-subtle: var(--info-subtle);
+
+	--color-warning: var(--warning);
+	--color-warning-foreground: var(--warning-foreground);
+	--color-warning-subtle: var(--warning-subtle);
+
+	--color-danger: var(--danger);
+	--color-danger-foreground: var(--danger-foreground);
+	--color-danger-subtle: var(--danger-subtle);
 }
 
 @layer base {

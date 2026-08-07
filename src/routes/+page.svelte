@@ -1,7 +1,8 @@
 <script lang="ts">
+	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { formatPrice, testLikeButton } from '$lib/index';
-	import { Heart } from '@lucide/svelte';
+	import { Heart, TrendingUp } from '@lucide/svelte';
 
 	let isFavorited = $state(false);
 
@@ -23,7 +24,7 @@
 <main>
 	<section class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 		{#each collections.data as collection}
-			<article class="relative rounded border p-1">
+			<article class="relative rounded border p-1 shadow-sm transition-shadow hover:shadow-lg/5">
 				<div class="absolute top-4 right-4">
 					<Button
 						onclick={(e) => handleFavoriteClick(e, collection.id)}
@@ -42,14 +43,18 @@
 					/>
 
 					<div class="flex w-full flex-1 flex-col px-3 py-8">
-						<h3 class="font-medium">{collection.title}</h3>
-						<p class="text-sm">{collection.brand}</p>
-						<div class="mt-2 flex grow flex-col justify-end">
-							<p class="text-xs text-muted-foreground">
-								Lowest Price: <span class="text-sm font-medium text-foreground">
+						<span><Badge variant="secondary">{collection.brand}</Badge></span>
+						<h3 class="font-bold">{collection.title}</h3>
+						<p class="text-sm text-muted-foreground">{collection.secondary_title}</p>
+						<div class="mt-8 flex w-full grow items-end justify-between">
+							<div>
+								<p class="text-xs text-muted-foreground">Lowest Price</p>
+								<p class=" font-bold text-foreground">
 									{formatPrice(collection.min_price)}
-								</span>
-							</p>
+								</p>
+							</div>
+
+							<TrendingUp class="text-primary" />
 						</div>
 					</div>
 				</a>

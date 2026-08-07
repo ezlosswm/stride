@@ -24,12 +24,14 @@
 		"bits-ui": "^2.18.1",
 		"clsx": "^2.1.1",
 		"embla-carousel-svelte": "^8.6.0",
+		"formsnap": "^2.0.1",
 		"prettier": "^3.8.3",
 		"prettier-plugin-svelte": "^4.1.0",
 		"prettier-plugin-tailwindcss": "^0.8.0",
 		"shadcn-svelte": "^1.5.0",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
+		"sveltekit-superforms": "^2.30.2",
 		"tailwind-merge": "^3.6.0",
 		"tailwind-variants": "^3.3.1",
 		"tailwindcss": "^4.3.0",
@@ -39,7 +41,7 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
-		"@lucide/svelte": "^1.28.0",
+		"@lucide/svelte": "^1.29.0",
 		"embla-carousel-autoplay": "^8.6.0"
 	}
 }
