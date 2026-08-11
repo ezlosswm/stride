@@ -14,6 +14,8 @@
 	const shoeId = $derived(params.shoeId);
 
 	const shoeInfo = $derived(data.product.data);
+
+	let isDrawerOpen = $state(false);
 </script>
 
 <h1>Single Item</h1>
@@ -80,14 +82,14 @@
 						target="_blank"
 						rel="noopener noreferrer">Buy Now For {formatPrice(shoeInfo.min_price)}</Button
 					>
-					<Drawer.Root direction="right">
+					<Drawer.Root bind:open={isDrawerOpen} direction="right">
 						<Drawer.Trigger class="flex-1">
 							<Button class="w-full gap-1.5 text-primary" size="lg" variant="ghost">
 								<Crosshair />
 								Set Target Price</Button
 							>
 						</Drawer.Trigger>
-						<Drawer.Content class="w-full max-w-6xl">
+						<Drawer.Content>
 							<Drawer.Header>
 								<Drawer.Title class="text-xl font-bold">
 									<h2>Set Target Price</h2>
@@ -116,7 +118,7 @@
 									</div>
 								</Card.Root>
 
-								<form class="flex h-full flex-col space-y-5">
+								<form id="set-price-form" class="flex h-full flex-1 flex-col space-y-5">
 									<div class="space-y-3">
 										<Label class="text-sm tracking-tight">Target Price</Label>
 										<div class="relative">
@@ -156,13 +158,19 @@
 											<Checkbox id="push-notification" />
 										</div>
 									</div>
-
-									<div class="">
-										<Button size="lg" class="w-full text-sm">Save Target Price</Button>
-										<Button size="lg" variant="ghost" class="w-full text-sm">Cancel</Button>
-									</div>
 								</form>
 							</section>
+							<Drawer.Footer>
+								<Button form="set-price-form" size="lg" class="w-full text-sm"
+									>Save Target Price</Button
+								>
+								<Button
+									onclick={() => (isDrawerOpen = false)}
+									size="lg"
+									variant="ghost"
+									class="w-full text-sm">Cancel</Button
+								>
+							</Drawer.Footer>
 						</Drawer.Content>
 					</Drawer.Root>
 				</div>
