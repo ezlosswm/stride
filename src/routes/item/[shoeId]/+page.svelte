@@ -16,11 +16,19 @@
 	const shoeInfo = $derived(data.product.data);
 
 	let isDrawerOpen = $state(false);
+
+	const user = $derived(data.user.user_metadata.name);
 </script>
 
 <h1>Single Item</h1>
 
-<p>Slugs Shoe ID: {shoeId}</p>
+<p>Slugs Shoe ID: {shoeId} for user {user}</p>
+
+{#if data.user}
+	<Button href="/auth/logout" variant="destructive">Logout</Button>
+{:else}
+	<Button href="/auth/login">Login</Button>
+{/if}
 
 <main>
 	<div class="my-9">
@@ -83,11 +91,13 @@
 						rel="noopener noreferrer">Buy Now For {formatPrice(shoeInfo.min_price)}</Button
 					>
 					<Drawer.Root bind:open={isDrawerOpen} direction="right">
-						<Drawer.Trigger class="flex-1">
-							<Button class="w-full gap-1.5 text-primary" size="lg" variant="ghost">
-								<Crosshair />
-								Set Target Price</Button
-							>
+						<Drawer.Trigger>
+							{#snippet child({ props })}
+								<Button {...props} class="w-full gap-1.5 text-primary" size="lg" variant="ghost">
+									<Crosshair />
+									Set Target Price
+								</Button>
+							{/snippet}
 						</Drawer.Trigger>
 						<Drawer.Content>
 							<Drawer.Header>

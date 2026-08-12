@@ -7,7 +7,7 @@
 </script>
 
 <footer
-	class="mt-8 flex flex-col items-center justify-between gap-9 border bg-muted px-6 py-4 md:flex-row"
+	class=" mt-8 flex w-full flex-col items-center justify-between gap-9 border bg-muted px-6 py-4 md:flex-row"
 >
 	<Button class="size-32" variant="secondary" href="/">
 		<img src={logo} class="h-full object-contain" alt="Stride Logo" />

@@ -41,7 +41,7 @@
 					<Search />
 				</Button>
 			</div>
-			<Button class="size-20 p-0" variant="ghost">
+			<Button href="/" class="size-20 p-0" variant="ghost">
 				<img class="object-contain" src={logo} alt="Stride Logo" />
 			</Button>
 
