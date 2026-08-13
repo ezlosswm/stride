@@ -3,9 +3,9 @@ import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ url, locals: { getUser, supabase } }) => {
 	const user = await getUser();
-	if (!user) {
+	if (user) {
 		console.log('No user, redirecting to login');
-		throw redirect(303, `/auth/register?redirectTo=${url.pathname}`);
+		throw redirect(303, '/');
 	}
 
 	const {

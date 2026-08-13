@@ -1,5 +1,6 @@
 <script>
 	import logo from '$lib/assets/stride-logo.svg';
+	import { navLinks } from '$lib/navLinks';
 
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Heart, Menu, Search, User, X } from '@lucide/svelte';
@@ -82,9 +83,9 @@
 			</div>
 
 			<div class="flex items-center gap-2">
-				<Button variant="ghost">About</Button>
-				<Button variant="ghost">News</Button>
-				<Button href="/auth/register" size="lg">Login or Register</Button>
+				{#each navLinks as nav (nav.title)}
+					<Button variant={nav.variant} href={nav.href}>{nav.title}</Button>
+				{/each}
 			</div>
 		</nav>
 	{/if}

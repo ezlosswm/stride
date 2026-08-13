@@ -1,5 +1,6 @@
 // import { KICKS_API_KEY } from '$env/static/private';
 import { singleProduct } from '$lib/sampleData.js';
+import { fail, redirect, text } from '@sveltejs/kit';
 
 // Single loaded shoe data
 // export const load = async ({ fetch }) => {
@@ -22,4 +23,52 @@ export const load = async () => {
 	return {
 		product: singleProduct
 	};
+};
+
+export const actions = {
+	default: async ({ url, request, locals: { getUser, supabase } }) => {
+		console.log('Form submitted');
+		const user = await getUser();
+		if (!user) {
+			throw redirect(303, '/auth/register');
+		}
+
+		const { error } = await supabase
+			.from('products')
+			.upsert({
+				id: user.id,
+				external_id: '1',
+				title: 'nike',
+				brand: '',
+				model: '',
+				gender: '',
+
+				description: '',
+				image_url: '',
+				product_url: '',
+				slug: '',
+
+				sku: '',
+				product_type: 'text',
+				category: 'sneaker',
+				secondary_category: '',
+
+				min_price: 100,
+				max_price: 400,
+				avg_price: 240,
+
+				upcoming: false,
+
+				api_created_at: null,
+				api_updated_at: null
+			})
+			.select();
+
+		if (error) {
+			console.error('Error inserting into products table.', error.message);
+			return fail(500, {
+				errorMessage: error.message
+			});
+		}
+	}
 };

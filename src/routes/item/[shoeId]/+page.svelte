@@ -93,7 +93,7 @@
 					<Drawer.Root bind:open={isDrawerOpen} direction="right">
 						<Drawer.Trigger>
 							{#snippet child({ props })}
-								<Button {...props} class="w-full gap-1.5 text-primary" size="lg" variant="ghost">
+								<Button {...props} class="flex-1 gap-1.5 text-primary" size="lg" variant="ghost">
 									<Crosshair />
 									Set Target Price
 								</Button>
@@ -128,7 +128,11 @@
 									</div>
 								</Card.Root>
 
-								<form id="set-price-form" class="flex h-full flex-1 flex-col space-y-5">
+								<form
+									method="POST"
+									id="set-price-form"
+									class="flex h-full flex-1 flex-col space-y-5"
+								>
 									<div class="space-y-3">
 										<Label class="text-sm tracking-tight">Target Price</Label>
 										<div class="relative">
@@ -171,7 +175,7 @@
 								</form>
 							</section>
 							<Drawer.Footer>
-								<Button form="set-price-form" size="lg" class="w-full text-sm"
+								<Button type="submit" form="set-price-form" size="lg" class="w-full text-sm"
 									>Save Target Price</Button
 								>
 								<Button
