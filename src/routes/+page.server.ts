@@ -1,32 +1,21 @@
-// import { KICKS_API_KEY } from '$env/static/private';
-import { data } from '$lib/sampleData';
+import { normalizeStockX, normalizeGoat, mergeSneakers } from '$lib/index.js';
+import { getStockXProducts, getGoatProducts } from '$lib/server/kicks.js';
 
-// export const load = async ({ fetch }) => {
-// 	const params = new URLSearchParams({
-// 		currency: 'USD',
-// 		market: 'US',
-// 		'display[prices]': 'true'
-// 	});
-// 	const res = await fetch(
-// 		`https://api.kicks.dev/v3/stockx/products?${params.toString()}&limit=10`,
-// 		{
-// 			headers: { Authorization: `${KICKS_API_KEY}` }
-// 		}
-// 	);
+// NOTE: Make sure to set user preferences for shoe size
+export const load = async ({}) => {
+	const [stockxResponse, goatResponse] = await Promise.all([
+		getStockXProducts(),
+		getGoatProducts()
+	]);
 
-// 	const data = await res.json();
+	const stockx = stockxResponse.collections.map(normalizeStockX);
+	const goat = goatResponse.collections.map(normalizeGoat);
 
-// 	console.log('data', data);
+	const products = mergeSneakers(stockx, goat);
 
-// 	return {
-// 		collections: data
-// 	};
-// };
-
-export const load = async () => {
-	// console.log('data', data);
+	console.log('List of products\n', products);
 
 	return {
-		collections: data
+		collections: products
 	};
 };

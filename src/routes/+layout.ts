@@ -18,6 +18,9 @@ export const load: LayoutLoad = async ({ fetch, data, depends }) => {
 				cookies: {
 					getAll() {
 						return data.cookies;
+					},
+					setAll() {
+						// Cookie persistence is handled by the server hook.
 					}
 				}
 			});
