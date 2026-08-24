@@ -3,7 +3,6 @@ declare global {
 		marketplace: 'stockx' | 'goat';
 		productId: string;
 		price: number | null;
-		url?: string;
 	};
 
 	type Sneaker = {

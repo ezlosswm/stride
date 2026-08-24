@@ -376,3 +376,205 @@ export const singleProduct = {
 	},
 	meta: null
 };
+
+export const productList = [
+	{
+		sku: '',
+		name: 'Supreme Hanes Crew Socks (4 Pack) White',
+		brand: 'Supreme',
+		colorway: undefined,
+		imageUrl:
+			'https://images.stockx.com/images/Supreme-Hanes-Crew-Socks-4-Pack-White-Product-2.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784742313',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '94812-90481-920',
+				price: 27
+			}
+		]
+	},
+	{
+		sku: 'FQ8138-600',
+		name: 'Jordan 4 Retro Toro Bravo (2026)',
+		brand: 'Jordan',
+		colorway: 'Fire Red/White/Black/Cement Grey',
+		imageUrl:
+			'https://images.stockx.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '9acafeb5-bc4a-4d66-bc3a-4899d2e64775',
+				price: 169
+			},
+			{ marketplace: 'goat', productId: 1653296, price: undefined }
+		]
+	},
+	{
+		sku: 'DD0587-008',
+		name: 'Jordan 5 Retro Black University Blue (2026)',
+		brand: 'Jordan',
+		colorway: 'Black/University Blue-White',
+		imageUrl:
+			'https://images.stockx.com/images/Air-Jordan-5-Retro-Black-University-Blue-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784225202',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '019ac251-3a0d-7243-bb16-5128353be8bf',
+				price: 246
+			},
+			{ marketplace: 'goat', productId: 1711594, price: undefined }
+		]
+	},
+	{
+		sku: '1201A906-001',
+		name: 'ASICS Gel-1130 Black Pure Silver',
+		brand: 'ASICS',
+		colorway: 'Black/Pure Silver',
+		imageUrl:
+			'https://images.stockx.com/images/ASICS-Gel-1130-Black-Pure-Silver-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784840409',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: 'f0f09c1a-e32b-43c5-867a-cbc2737863dd',
+				price: 93
+			},
+			{ marketplace: 'goat', productId: 1273697, price: undefined }
+		]
+	},
+	{
+		sku: 'CT8529-108',
+		name: 'Jordan 6 Retro Oreo (2026)',
+		brand: 'Jordan',
+		colorway: 'White/Black',
+		imageUrl:
+			'https://images.stockx.com/images/Air-Jordan-6-Retro-Oreo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1785768929',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '019e232a-b20f-73da-99f4-6d973257127c',
+				price: 145
+			},
+			{ marketplace: 'goat', productId: 1729522, price: undefined }
+		]
+	},
+	{
+		sku: 'IF4396-104',
+		name: 'Jordan 3 Retro True Blue (2026)',
+		brand: 'Jordan',
+		colorway: undefined,
+		imageUrl:
+			'https://images.stockx.com/images/Air-Jordan-3-Retro-True-Blue-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784214931',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '019eb326-bd29-70a1-a81d-74605ac98dc1',
+				price: 171
+			}
+		]
+	},
+	{
+		sku: '1201B020-100',
+		name: 'ASICS Gel-1130 White Pure Silver',
+		brand: 'ASICS',
+		colorway: 'White/Pure Silver',
+		imageUrl:
+			'https://images.stockx.com/images/ASICS-Gel-1130-White-Pure-Silver-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1738193358',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '2f400663-6026-445a-b470-a7bade4ab6e2',
+				price: 93
+			},
+			{ marketplace: 'goat', productId: 1366034, price: undefined }
+		]
+	},
+	{
+		sku: '440888-008',
+		name: 'Jordan 5 Retro Black University Blue (2026) (GS)',
+		brand: 'Jordan',
+		colorway: undefined,
+		imageUrl:
+			'https://images.stockx.com/images/Air-Jordan-5-Retro-Black-University-Blue-2026-GS-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1781714036',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '019ac251-1aab-7ca7-a056-884f1eddf480',
+				price: 167
+			}
+		]
+	},
+	{
+		sku: 'HQ7978-103',
+		name: 'Jordan 5 Retro White Metallic (2026)',
+		brand: 'Jordan',
+		colorway: undefined,
+		imageUrl:
+			'https://images.stockx.com/images/Air-Jordan-5-Retro-White-Metallic-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784233635',
+		isFavorite: false,
+		markets: [
+			{
+				marketplace: 'stockx',
+				productId: '7ed8723a-ad44-4449-be54-6294fd71f769',
+				price: 150
+			}
+		]
+	},
+	{
+		sku: '09390-1002500YYB-BLAC',
+		name: "YZY YS-01 'Black'",
+		brand: 'YZY',
+		colorway: 'Black',
+		imageUrl:
+			'https://image.goat.com/1000/attachments/product_template_pictures/images/113/900/164/original/1696991_00.png.png',
+		isFavorite: false,
+		markets: [{ marketplace: 'goat', productId: 1696991, price: undefined }]
+	},
+	{
+		sku: '99HAA26-WHITE',
+		name: "Supreme x Hanes Crew Socks (4 Pack) 'White'",
+		brand: 'Supreme',
+		colorway: 'White',
+		imageUrl:
+			'https://image.goat.com/1000/attachments/product_template_pictures/images/098/053/256/original/774054_00.png.png',
+		isFavorite: false,
+		markets: [{ marketplace: 'goat', productId: 774054, price: undefined }]
+	},
+	{
+		sku: 'IV7640-001',
+		name: "Air Jordan 17 Low 'Black Patent'",
+		brand: 'Air Jordan',
+		colorway: 'Black/Black/Chrome',
+		imageUrl:
+			'https://image.goat.com/1000/attachments/product_template_pictures/images/116/957/120/original/IV7640_20001.png.png',
+		isFavorite: false,
+		markets: [{ marketplace: 'goat', productId: 1762343, price: undefined }]
+	},
+	{
+		sku: '192HO246250F',
+		name: "Fear of God Essentials Fleece Hoodie II 'Black'",
+		brand: 'Fear of God Essentials',
+		colorway: 'Black',
+		imageUrl:
+			'https://image.goat.com/1000/attachments/product_template_pictures/images/106/193/078/original/1422279_00.png.png',
+		isFavorite: false,
+		markets: [{ marketplace: 'goat', productId: 1422279, price: undefined }]
+	},
+	{
+		sku: '192HO246258F',
+		name: "Fear of God Essentials Fleece Hoodie II 'Light Heather Grey'",
+		brand: 'Fear of God Essentials',
+		colorway: 'Light Heather Grey',
+		imageUrl:
+			'https://image.goat.com/1000/attachments/product_template_pictures/images/106/193/094/original/1422284_00.png.png',
+		isFavorite: false,
+		markets: [{ marketplace: 'goat', productId: 1422284, price: undefined }]
+	}
+];
