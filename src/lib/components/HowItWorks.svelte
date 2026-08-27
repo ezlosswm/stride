@@ -2,7 +2,7 @@
 	import { ChartColumn, ShieldCheck, Sparkles } from '@lucide/svelte';
 </script>
 
-<section id="how-it-works" class="border-y py-16">
+<section id="how-it-works" class="border-y bg-muted-foreground py-16">
 	<div class="mx-auto max-w-7xl px-4">
 		<div class="flex flex-col items-start gap-4 md:flex-row">
 			<div class="mb-5 w-3/4">
@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="mt-3 flex w-full flex-col gap-4 md:mt-0 md:flex-row">
-				<div class="flex w-full flex-col rounded-xl border bg-white p-4">
+				<div class="flex w-full flex-col rounded-xl border bg-white p-6">
 					<ChartColumn />
 
 					<div class="mt-7 space-y-1.5">

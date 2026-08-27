@@ -401,7 +401,7 @@ export const productList = [
 		colorway: 'Fire Red/White/Black/Cement Grey',
 		imageUrl:
 			'https://images.StockX.com/images/Air-Jordan-4-Retro-Toro-Bravo-2026-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=100&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1784232937',
-		isFavorite: false,
+		isFavorite: true,
 		markets: [
 			{
 				marketplace: 'StockX',
@@ -534,7 +534,7 @@ export const productList = [
 		colorway: 'Black',
 		imageUrl:
 			'https://image.GOAT.com/1000/attachments/product_template_pictures/images/113/900/164/original/1696991_00.png.png',
-		isFavorite: false,
+		isFavorite: true,
 		markets: [{ marketplace: 'GOAT', productId: 1696991, price: 400 }]
 	},
 	{
@@ -564,7 +564,7 @@ export const productList = [
 		colorway: 'Black',
 		imageUrl:
 			'https://image.GOAT.com/1000/attachments/product_template_pictures/images/106/193/078/original/1422279_00.png.png',
-		isFavorite: false,
+		isFavorite: true,
 		markets: [{ marketplace: 'GOAT', productId: 1422279, price: 100 }]
 	},
 	{

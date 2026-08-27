@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import Hero from '$lib/components/Hero.svelte';
-	import { ArrowUpRight, Heart, TrendingDown } from '@lucide/svelte';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import { ArrowUpRight, ChevronDown, Heart } from '@lucide/svelte';
 	import { formatPrice } from '$lib/index';
+	import Hero from '$lib/components/Hero.svelte';
 	import HowItWorks from '$lib/components/HowItWorks.svelte';
 
 	let { data } = $props();
@@ -39,7 +40,7 @@
 	<section
 		class="mx-auto grid max-w-7xl grid-cols-1 gap-4 border-t px-4 py-16 md:grid-cols-2 lg:grid-cols-3"
 	>
-		<div class="col-span-full space-y-3">
+		<div class="col-span-full mb-8 space-y-3">
 			<div class="mb-5 flex items-center gap-1.5">
 				<div
 					class="size-2 animate-pulse rounded-full bg-accent shadow-[0_0_30px_5px] shadow-accent/70"
@@ -52,7 +53,33 @@
 			<h2 class="font-heading text-4xl font-bold">Find your next pair.</h2>
 
 			<p class="font-heading text-sm text-muted-foreground">A list of pairs worth a closer look.</p>
+			<div class="mt-7 flex items-center justify-between">
+				<div class="flex items-center gap-4">
+					<Button variant="default" class="rounded-full p-4">All</Button>
+					<Button variant="outline" class="rounded-full p-4">Jordan</Button>
+					<Button variant="outline" class="rounded-full p-4">Nike</Button>
+					<Button variant="outline" class="rounded-full p-4">Adidas</Button>
+				</div>
+
+				<div class="flex items-center gap-2">
+					<p class="text-xs font-semibold text-muted-foreground">Sort</p>
+					<DropdownMenu.Root>
+						<DropdownMenu.Trigger>
+							<Button size="lg" variant="outline" class="rounded-full bg-white">
+								Lowest Price <span><ChevronDown /></span></Button
+							>
+						</DropdownMenu.Trigger>
+						<DropdownMenu.Content>
+							<DropdownMenu.Group>
+								<DropdownMenu.Item>Lowest Price</DropdownMenu.Item>
+								<DropdownMenu.Item>Highest Price</DropdownMenu.Item>
+							</DropdownMenu.Group>
+						</DropdownMenu.Content>
+					</DropdownMenu.Root>
+				</div>
+			</div>
 		</div>
+
 		{#each collections as collection}
 			<article
 				class="group relative rounded-xl border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg/10"
@@ -74,24 +101,28 @@
 						/>
 					</Button>
 				</div>
-				<a href={`/item/${collection.sku}`} class="flex h-full flex-col items-center">
-					<img
-						class="max-h-full max-w-full object-contain transition-all group-hover:scale-105"
-						src={collection.imageUrl}
-						alt={collection.name}
-					/>
+				<a href={`/item/${collection.sku}`} class="grid h-full grid-rows-[220px_1fr_auto]">
+					<div class="flex min-w-0 items-center justify-center px-4">
+						<img
+							class="size-full object-contain transition-transform group-hover:scale-105"
+							src={collection.imageUrl}
+							alt={collection.name}
+						/>
+					</div>
 
 					<!-- Card content -->
-					<div class="flex w-full flex-1 px-3 py-8">
-						<div class="flex-1">
-							<div class="w-3/4">
-								<h3 class="font-heading text-lg leading-tight font-semibold tracking-tight">
-									{collection.name}
-								</h3>
-							</div>
-							<p class="mt-1 text-xs text-muted-foreground">{collection.colorway}</p>
+					<div class="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-4 px-3 py-8">
+						<div class="min-w-0">
+							<h3 class="font-heading text-lg leading-tight font-semibold tracking-tight">
+								{collection.name}
+							</h3>
+
+							<p class="mt-1 text-xs text-muted-foreground">
+								{collection.colorway}
+							</p>
 						</div>
-						<div class="text-end">
+
+						<div class="shrink-0 text-end">
 							<p class="font-heading text-xs tracking-tight text-muted-foreground uppercase">
 								best ask
 							</p>
@@ -106,26 +137,21 @@
 
 					<!-- Card footer -->
 					<div
-						class="flex w-full items-center justify-between rounded-xl border border-accent/10 bg-accent/5 p-2"
+						class="flex items-center justify-between rounded-xl border border-accent/10
+				bg-accent/5 p-2"
 					>
-						<div class="flex items-center gap-1.5 text-xs">
-							<p>
-								<span class="font-semibold">Save</span>
-								<span class="text-xs font-semibold text-accent"
-									>{formatPrice(getLowestPrice(collection.markets)?.price)}</span
-								>
-								on {getLowestPrice(collection.markets)?.marketplace}
-							</p>
-						</div>
+						<p class="text-xs">
+							<span class="font-semibold">Save</span>
+							<span class="font-semibold text-accent">
+								{formatPrice(getLowestPrice(collection.markets)?.price)}
+							</span>
+							on {getLowestPrice(collection.markets)?.marketplace}
+						</p>
 
-						<div>
-							<Button class="text-xs" variant="link">
-								Compare
-								<span>
-									<ArrowUpRight />
-								</span>
-							</Button>
-						</div>
+						<Button class="text-xs" variant="link">
+							Compare
+							<ArrowUpRight />
+						</Button>
 					</div>
 				</a>
 			</article>

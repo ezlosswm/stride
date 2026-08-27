@@ -3,8 +3,8 @@
 	import { Button } from '$lib/components/ui/button/index';
 </script>
 
-<footer class="flex w-full flex-col items-start md:flex-row md:items-center">
-	<div class="px-4 py-16">
+<footer class="mx-auto max-w-7xl">
+	<div class="flex flex-col items-start justify-between px-4 py-16 md:flex-row md:items-center">
 		<Button class="size-24 p-0" variant="secondary" href="/">
 			<img src={logo} class="h-full object-cover" alt="Stride Logo" />
 		</Button>
