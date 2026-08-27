@@ -32,7 +32,7 @@
 <svelte:window bind:innerWidth />
 
 <header
-	class="sticky inset-x-0 top-0 z-10 bg-background px-6 pb-0 {isMenuOpen ? 'shadow-sm' : ''}"
+	class="sticky inset-x-0 top-0 z-80 bg-background px-6 pb-0 {isMenuOpen ? 'shadow-sm' : ''}"
 	class:shadow-md={scrolled}
 	class:border-b={isMenuOpen}
 	class:pb-4={isMenuOpen}
@@ -44,7 +44,6 @@
 			</Button>
 
 			<Button
-				href="/"
 				onclick={() => (isMenuOpen = !isMenuOpen)}
 				class="rounded-full"
 				size="icon-lg"

@@ -2,11 +2,11 @@
 	import { ChartColumn, ShieldCheck, Sparkles } from '@lucide/svelte';
 </script>
 
-<section id="how-it-works" class="border-y bg-muted-foreground py-16">
-	<div class="mx-auto max-w-7xl px-4">
+<section id="how-it-works" class="border-y bg-muted py-16">
+	<div class="mx-auto w-full max-w-7xl px-4">
 		<div class="flex flex-col items-start gap-4 md:flex-row">
 			<div class="mb-5 w-3/4">
-				<div class="mb-5 flex items-center gap-1.5">
+				<div class="mb-5 flex w-full items-center gap-1.5">
 					<div
 						class="size-2 animate-pulse rounded-full bg-accent shadow-[0_0_30px_5px] shadow-accent/70"
 					></div>

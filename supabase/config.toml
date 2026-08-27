@@ -290,7 +290,7 @@ email_optional = false
 enabled = true
 client_id = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID)"
 client_secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET)"
-redirect_uri = "https://localhost:5173/auth/v1/callback"
+redirect_uri = "https://stride-seven-beta.vercel.app/auth/v1/callback"
 skip_nonce_check = false
 
 # Allow Solana wallet holders to sign in to your project via the Sign in with Solana (SIWS, EIP-4361) standard.

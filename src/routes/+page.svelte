@@ -53,7 +53,7 @@
 			<h2 class="font-heading text-4xl font-bold">Find your next pair.</h2>
 
 			<p class="font-heading text-sm text-muted-foreground">A list of pairs worth a closer look.</p>
-			<div class="mt-7 flex items-center justify-between">
+			<div class="mt-7 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
 				<div class="flex items-center gap-4">
 					<Button variant="default" class="rounded-full p-4">All</Button>
 					<Button variant="outline" class="rounded-full p-4">Jordan</Button>
