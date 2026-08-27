@@ -8,18 +8,18 @@ type NavLinks = {
 
 export const navLinks: NavLinks[] = [
 	{
-		title: 'About',
-		href: '/about',
+		title: 'Explore sneakers',
+		href: '/#collections',
 		variant: 'ghost'
 	},
 	{
-		title: 'News',
-		href: '/news',
+		title: 'Saved picks',
+		href: '/saved-picks',
 		variant: 'ghost'
 	},
 	{
-		title: 'Login or Register',
-		href: '/auth/register',
-		variant: 'default'
+		title: 'How it works',
+		href: '/#how-it-works',
+		variant: 'ghost'
 	}
 ];
