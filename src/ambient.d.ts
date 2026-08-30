@@ -1,4 +1,12 @@
+import type { ButtonVariant } from './components/ui/button';
+
 declare global {
+	type NavLinks = {
+		title: string;
+		href: string;
+		variant: ButtonVariant;
+	};
+
 	type Marketplace = {
 		marketplace: 'stockx' | 'goat';
 		productId: string;
@@ -14,6 +22,16 @@ declare global {
 		colorway?: string;
 
 		markets: Marketplace[];
+	};
+
+	type SortType = {
+		value: string;
+		label: string;
+	};
+
+	type FilterType = {
+		label: string;
+		isActive: boolean;
 	};
 }
 
