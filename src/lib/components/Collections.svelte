@@ -101,7 +101,7 @@
 					</Button>
 				</Drawer.Trigger>
 
-				<Drawer.Content class="mt-24">
+				<Drawer.Content class="mt-20">
 					<Drawer.Header>
 						<Drawer.Title>
 							Hey {collection.brand}

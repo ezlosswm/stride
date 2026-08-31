@@ -38,7 +38,7 @@
 	class:pb-4={isMenuOpen}
 >
 	{#if isMobile}
-		<nav class="mb-3 flex items-center justify-between {isMenuOpen ? 'border-b' : ''}">
+		<nav class="flex items-center justify-between {isMenuOpen ? 'border-b' : ''}">
 			<Button href="/" class="size-20 p-0" variant="ghost">
 				<img class="object-cover" src={logo} alt="Stride Logo" />
 			</Button>
