@@ -9,9 +9,10 @@ declare global {
 	};
 
 	type Marketplace = {
-		marketplace: 'stockx' | 'goat';
+		marketplace: 'StockX' | 'GOAT';
 		productId: string;
 		price: number | null;
+		url: string;
 	};
 
 	type Sneaker = {

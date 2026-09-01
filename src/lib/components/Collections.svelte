@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { Heart } from '@lucide/svelte';
-	import { formatPrice } from '$lib/index';
+	import { ArrowUpRight, Heart } from '@lucide/svelte';
+	import { compareMarkets, formatPrice } from '$lib/kickFormatters';
 	import Drawer from './Drawer.svelte';
 
 	let isFavorite = $state<boolean>();
@@ -14,18 +14,6 @@
 
 		isFavorite = sneaker?.isFavorite;
 		isFavorite = !isFavorite;
-	}
-
-	function getLowestPrice(items: any[]) {
-		const product = items.filter(
-			(item): item is Marketplace & { price: number } => item.price !== undefined
-		);
-
-		if (product.length === 0) {
-			return null;
-		}
-
-		return product.reduce((cheapest, item) => (item.price < cheapest.price ? item : cheapest));
 	}
 
 	let { collection } = $props();
@@ -58,24 +46,23 @@
 			/>
 		</div>
 
-		<div class="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-4 px-3 py-8">
+		<div class="grid min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-4 px-2 py-6">
 			<div class="min-w-0">
 				<h3 class="font-heading text-lg leading-tight font-semibold tracking-tight">
 					{collection.name}
 				</h3>
 
-				<p class="mt-1 text-xs text-muted-foreground">
+				<p class="mt-1.5 text-xs text-muted-foreground">
 					{collection.colorway}
 				</p>
 			</div>
 
 			<div class="shrink-0 text-end">
-				<p class="font-heading text-xs tracking-tight text-muted-foreground uppercase">best ask</p>
-				<p class="font-heading text-xl font-bold">
-					{formatPrice(getLowestPrice(collection.markets)?.price)}
+				<p class="font-heading text-2xl font-bold">
+					{formatPrice(compareMarkets(collection).lowerMarket?.price)}
 				</p>
-				<p class="text-xs text-muted-foreground">
-					on {getLowestPrice(collection.markets)?.marketplace}
+				<p class="mt-1 text-xs text-muted-foreground">
+					On {compareMarkets(collection).lowerMarket.marketplace}
 				</p>
 			</div>
 		</div>
@@ -84,15 +71,30 @@
 			class="flex items-center justify-between rounded-xl border border-accent/10
 				bg-accent/5 p-2"
 		>
-			<p class="text-xs">
-				<span class="font-semibold">Save</span>
-				<span class="font-semibold text-accent">
-					{formatPrice(getLowestPrice(collection.markets)?.price)}
-				</span>
-				on {getLowestPrice(collection.markets)?.marketplace}
-			</p>
+			{#if collection.markets.length < 2}
+				<p class="text-xs">
+					Only available on <span class="font-semibold"
+						>{compareMarkets(collection).lowerMarket.marketplace}</span
+					>
+				</p>
 
-			<Drawer {collection} />
+				<Button href={compareMarkets(collection).lowerMarket.url} target="_blank" variant="ghost">
+					<span class="font-medium text-primary"> View Full Details </span>
+					<ArrowUpRight class="size-4 stroke-primary" />
+				</Button>
+			{:else}
+				<p class="text-xs">
+					Save
+					<span class="font-semibold text-accent">
+						{formatPrice(compareMarkets(collection).priceDifference)}
+					</span>
+					on
+					<span class="font-semibold">
+						{compareMarkets(collection).lowerMarket.marketplace}
+					</span>
+				</p>
+				<Drawer {collection} />
+			{/if}
 		</div>
 	</div>
 </article>

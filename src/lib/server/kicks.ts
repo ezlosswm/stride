@@ -4,6 +4,7 @@ export const getStockXProducts = async () => {
 	const params = new URLSearchParams({
 		currency: 'USD',
 		market: 'US',
+		filters: 'product_type = "sneakers" AND gender = "men"',
 		'display[prices]': 'true',
 		'display[variants]': 'true'
 	});
@@ -24,7 +25,7 @@ export const getStockXProducts = async () => {
 export const getGoatProducts = async () => {
 	const params = new URLSearchParams({
 		currency: 'USD',
-		fitlers: 'category = "shoes"',
+		filters: 'category = "shoes"',
 		'display[prices]': 'true',
 		'display[variants]': 'true'
 	});
