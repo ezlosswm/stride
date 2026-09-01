@@ -27,16 +27,7 @@
 	<section
 		class="mx-auto grid max-w-7xl grid-cols-1 gap-4 border-t px-4 py-16 md:grid-cols-2 lg:grid-cols-3"
 	>
-		<div class="col-span-full mb-8 space-y-3">
-			<div class="mb-5 flex items-center gap-1.5">
-				<div
-					class="size-2 animate-pulse rounded-full bg-accent shadow-[0_0_30px_5px] shadow-accent/70"
-				></div>
-				<span class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-					>Curated market board</span
-				>
-			</div>
-
+		<div class="col-span-full mb-7 space-y-3">
 			<h2 class="font-heading text-4xl font-bold">Find your next pair.</h2>
 
 			<p class="font-heading text-sm text-muted-foreground">A list of pairs worth a closer look.</p>

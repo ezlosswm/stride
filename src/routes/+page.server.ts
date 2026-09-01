@@ -1,4 +1,3 @@
-import { productList } from '$lib/sampleData';
 import {
 	normalizeStockX,
 	normalizeGoat,

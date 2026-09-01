@@ -1,6 +1,13 @@
 // import { KICKS_API_KEY } from '$env/static/private';
 import { singleProduct } from '$lib/sampleData.js';
 import { fail, redirect, text } from '@sveltejs/kit';
+import {
+	normalizeStockX,
+	normalizeGoat,
+	isAdultGoatProduct,
+	mergeSneakers
+} from '$lib/kickFormatters.js';
+import { getStockXProduct, getGoatProduct } from '$lib/server/kicks.js';
 
 // Single loaded shoe data
 // export const load = async ({ fetch }) => {
@@ -19,9 +26,19 @@ import { fail, redirect, text } from '@sveltejs/kit';
 // 	};
 // };
 
-export const load = async () => {
+export const load = async ({ params }) => {
+	const [stockxResponse, goatResponse] = await Promise.all([
+		getStockXProduct(params.sku),
+		getGoatProduct(params.sku)
+	]);
+
+	const stockx = stockxResponse.collections.map(normalizeStockX);
+	const goat = goatResponse.collections.map(normalizeGoat);
+
+	const product = mergeSneakers(stockx, goat);
+
 	return {
-		product: singleProduct
+		collections: product
 	};
 };
 

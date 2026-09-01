@@ -4,27 +4,15 @@
 	import * as Card from '$lib/components/ui/card/index.js';
 	import * as Carousel from '$lib/components/ui/carousel/index.js';
 
-	import { formatPrice } from '$lib';
+	import { formatPrice } from '$lib/kickFormatters.js';
 
-	let { data, params } = $props();
-	const shoeId = $derived(params.shoeId);
+	let { data } = $props();
+	// const shoeId = $derived(params.shoeId);
 
-	const shoeInfo = $derived(data.product.data);
-
-	// const user = $derived(data.user.user_metadata.name);
+	const shoeInfo = $derived(data.collections);
 </script>
 
-<h1>Single Item</h1>
-
-<!-- <p>Slugs Shoe ID: {shoeId} for user {user}</p> -->
-
-<!-- {#if data.user}
-	<Button href="/auth/logout" variant="destructive">Logout</Button>
-{:else}
-	<Button href="/auth/login">Login</Button>
-{/if} -->
-
-<main>
+<main class="mt-20">
 	<div class="mb-9">
 		<Button class="gap-1.5 text-muted-foreground" variant="ghost" href="/">
 			<ArrowLeft />
@@ -32,7 +20,12 @@
 		</Button>
 	</div>
 
-	<Card.Root class="mx-auto grid max-w-6xl grid-cols-1 md:w-3xl lg:grid-cols-2">
+	<img src={shoeInfo[0].imageUrl} alt={shoeInfo[0].name} class="h-full max-w-md rounded-xl" />
+	<h1>
+		{shoeInfo[0].name}
+	</h1>
+
+	<!-- <Card.Root class="mx-auto grid max-w-6xl grid-cols-1 md:w-3xl lg:grid-cols-2">
 		<Carousel.Root>
 			<Carousel.Content>
 				{#each shoeInfo.gallery_360 as src}
@@ -99,5 +92,5 @@
 				</section>
 			</Card.Content>
 		</div>
-	</Card.Root>
+	</Card.Root> -->
 </main>

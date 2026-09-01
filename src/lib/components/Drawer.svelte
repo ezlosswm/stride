@@ -31,10 +31,10 @@
 		<ArrowUpRight class="size-4 stroke-primary" />
 	</Sheet.Trigger>
 
-	<Sheet.Content side="right" class="z-90 max-w-xl!">
+	<Sheet.Content side="right" class="z-90 w-svw! max-w-xl!">
 		<Sheet.Header>
 			<Sheet.Title class="space-y-5">
-				<Sheet.Close class="flex justify-between">
+				<Sheet.Close class="flex items-center justify-between">
 					<div
 						class="inline-flex items-center gap-1 text-xs/relaxed font-medium text-muted-foreground transition-colors hover:text-foreground"
 					>
@@ -68,7 +68,13 @@
 			/>
 
 			<Sheet.Description class="mt-7 space-y-3">
-				<h4 class="font-heading text-lg font-bold text-foreground">Price Comparison</h4>
+				<div>
+					<h4 class="font-heading text-lg font-bold text-foreground">Price Comparison</h4>
+					Save<span class="font-semibold">
+						{formatPrice(compareMarkets(collection).priceDifference)}
+					</span>
+					on {compareMarkets(collection).lowerMarket.marketplace}
+				</div>
 
 				<Table.Root>
 					<Table.Caption class="sr-only">A list of prices from StockX and GOAT.</Table.Caption>
@@ -89,7 +95,9 @@
 										</span>
 
 										{#if isLowestAsk(market)}
-											<Badge>Lowest Ask</Badge>
+											<Badge class="bg-info-foreground text-info" variant="secondary"
+												>Lowest Ask</Badge
+											>
 										{/if}
 									</div>
 								</Table.Cell>
@@ -98,7 +106,7 @@
 									>{formatPrice(market.price)}</Table.Cell
 								>
 								<Table.Cell>
-									<Button size="lg">Purchase now</Button>
+									<Button size="lg" href={market.url}>Purchase now</Button>
 								</Table.Cell>
 							</Table.Row>
 						{/each}
