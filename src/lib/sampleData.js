@@ -408,7 +408,7 @@ export const productList = [
 				productId: '9acafeb5-bc4a-4d66-bc3a-4899d2e64775',
 				price: 169
 			},
-			{ marketplace: 'GOAT', productId: 1653296, price: undefined }
+			{ marketplace: 'GOAT', productId: 1653296, price: 153 }
 		]
 	},
 	{
@@ -425,7 +425,7 @@ export const productList = [
 				productId: '019ac251-3a0d-7243-bb16-5128353be8bf',
 				price: 246
 			},
-			{ marketplace: 'GOAT', productId: 1711594, price: undefined }
+			{ marketplace: 'GOAT', productId: 1711594, price: 300 }
 		]
 	},
 	{
@@ -442,7 +442,7 @@ export const productList = [
 				productId: 'f0f09c1a-e32b-43c5-867a-cbc2737863dd',
 				price: 93
 			},
-			{ marketplace: 'GOAT', productId: 1273697, price: undefined }
+			{ marketplace: 'GOAT', productId: 1273697, price: 110 }
 		]
 	},
 	{
@@ -459,7 +459,7 @@ export const productList = [
 				productId: '019e232a-b20f-73da-99f4-6d973257127c',
 				price: 145
 			},
-			{ marketplace: 'GOAT', productId: 1729522, price: undefined }
+			{ marketplace: 'GOAT', productId: 1729522, price: 144 }
 		]
 	},
 	{
@@ -492,7 +492,7 @@ export const productList = [
 				productId: '2f400663-6026-445a-b470-a7bade4ab6e2',
 				price: 93
 			},
-			{ marketplace: 'GOAT', productId: 1366034, price: undefined }
+			{ marketplace: 'GOAT', productId: 1366034, price: 102 }
 		]
 	},
 	{

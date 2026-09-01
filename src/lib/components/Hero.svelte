@@ -5,7 +5,7 @@
 	import { Button } from '$lib/components/ui/button/index';
 </script>
 
-<main class="relative isolate overflow-hidden border-b">
+<main class="relative isolate mt-20 overflow-hidden border-b">
 	<div
 		aria-hidden="true"
 		class="pointer-events-none absolute inset-0 -z-10
@@ -14,7 +14,6 @@
 			bg-size-[40px_40px]"
 	></div>
 
-	<!-- Circle & accent glow -->
 	<div
 		aria-hidden="true"
 		class="pointer-events-none absolute top-0 right-0 -z-10
@@ -35,17 +34,8 @@
 
 	<div class="mx-auto w-full max-w-7xl px-4 pt-16">
 		<div class="grid grid-cols-1 grid-rows-[1fr_auto] gap-4 md:grid-cols-2 md:items-end">
-			<div class="col-start-1 row-start-1 flex flex-col gap-8 self-center py-8">
-				<div class="flex items-center gap-1.5">
-					<div
-						class="size-2 animate-pulse rounded-full bg-accent shadow-[0_0_30px_5px] shadow-accent/70"
-					></div>
-					<span class="text-xs font-medium tracking-wider text-muted-foreground uppercase"
-						>THE SMARTER WAY TO BUY SNEAKERS</span
-					>
-				</div>
-
-				<div>
+			<div class="col-start-1 row-start-1 flex flex-col gap-8 py-8">
+				<div class="space-y-3">
 					<h1 class="font-heading text-5xl font-bold tracking-tight md:text-7xl">
 						<span> One pair. </span>
 						<br />
@@ -53,13 +43,13 @@
 						<br />
 						<span> One clear choice. </span>
 					</h1>
-					<p class="mt-7">
+					<p>
 						STRIDE compares sneaker prices across StockX and GOAT, so you can quickly see where to
 						buy, what you'll pay, and when the price is right.
 					</p>
 				</div>
 
-				<Button href="/#collections" class=" h-10 w-fit rounded-full px-6 py-3 font-bold" size="lg"
+				<Button href="/#collections" class="h-10 w-fit rounded-full px-6 py-3 font-bold" size="lg"
 					>Start Comparing <span><ChevronDown /></span></Button
 				>
 			</div>

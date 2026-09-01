@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Drawer from '$lib/components/ui/drawer/index.js';
-	import { ArrowUpRight, Heart } from '@lucide/svelte';
+	import { Heart } from '@lucide/svelte';
 	import { formatPrice } from '$lib/index';
+	import Drawer from './Drawer.svelte';
 
 	let isFavorite = $state<boolean>();
 
@@ -29,7 +29,6 @@
 	}
 
 	let { collection } = $props();
-	// const collection = $derived(data.collection);
 </script>
 
 <article
@@ -93,22 +92,7 @@
 				on {getLowestPrice(collection.markets)?.marketplace}
 			</p>
 
-			<Drawer.Root direction="right">
-				<Drawer.Trigger>
-					<Button class="text-xs" variant="link">
-						Compare
-						<ArrowUpRight />
-					</Button>
-				</Drawer.Trigger>
-
-				<Drawer.Content class="mt-20">
-					<Drawer.Header>
-						<Drawer.Title>
-							Hey {collection.brand}
-						</Drawer.Title>
-					</Drawer.Header>
-				</Drawer.Content>
-			</Drawer.Root>
+			<Drawer {collection} />
 		</div>
 	</div>
 </article>

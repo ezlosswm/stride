@@ -2,9 +2,8 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
-	import { filterTypes, sortTypes } from '$lib/filterAndSort.js';
+	import { filterTypes, shoeSizes, sortTypes } from '$lib/filterAndSort.js';
 	import Hero from '$lib/components/Hero.svelte';
-	import HowItWorks from '$lib/components/HowItWorks.svelte';
 	import Collections from '$lib/components/Collections.svelte';
 	import { Search } from '@lucide/svelte';
 
@@ -14,6 +13,11 @@
 	let value = $state<string>('');
 	const triggerContent = $derived(
 		sortTypes.find((s) => s.value === value)?.label ?? 'Lowest Price'
+	);
+
+	let shoeSizeValue = $state<string>('');
+	const shoeSizeTrigger = $derived(
+		shoeSizes.find((s) => s.menSize.toString() === shoeSizeValue)?.menSize ?? 'US M 10 / W 11.5'
 	);
 </script>
 
@@ -56,21 +60,38 @@
 						{/each}
 					</div>
 
-					<!-- Sort -->
-					<div class="flex items-center gap-2">
-						<p class="text-xs font-semibold text-muted-foreground">Sort</p>
-						<Select.Root type="single" bind:value>
-							<Select.Trigger>{triggerContent}</Select.Trigger>
-							<Select.Content>
-								<Select.Group>
-									{#each sortTypes as sortType (sortType.value)}
-										<Select.Item value={sortType.value} label={sortType.label}
-											>{sortType.label}</Select.Item
-										>
-									{/each}
-								</Select.Group>
-							</Select.Content>
-						</Select.Root>
+					<div class="mt-5 flex w-full justify-between gap-4 md:justify-end">
+						<div class="flex items-center gap-2">
+							<p class="text-xs font-semibold text-muted-foreground">Size</p>
+							<Select.Root type="single" bind:value>
+								<Select.Trigger>{shoeSizeTrigger}</Select.Trigger>
+								<Select.Content>
+									<Select.Group>
+										{#each shoeSizes as shoeSize (shoeSize.menSize)}
+											<Select.Item value={shoeSize.menSize.toString()}
+												>M {shoeSize.menSize} / W {shoeSize.womenSize}</Select.Item
+											>
+										{/each}
+									</Select.Group>
+								</Select.Content>
+							</Select.Root>
+						</div>
+
+						<div class="flex items-center gap-2">
+							<p class="text-xs font-semibold text-muted-foreground">Sort</p>
+							<Select.Root type="single" bind:value>
+								<Select.Trigger>{triggerContent}</Select.Trigger>
+								<Select.Content>
+									<Select.Group>
+										{#each sortTypes as sortType (sortType.value)}
+											<Select.Item value={sortType.value} label={sortType.label}
+												>{sortType.label}</Select.Item
+											>
+										{/each}
+									</Select.Group>
+								</Select.Content>
+							</Select.Root>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -81,5 +102,3 @@
 		{/each}
 	</section>
 </div>
-
-<HowItWorks />

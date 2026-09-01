@@ -3,12 +3,9 @@
 	import { navLinks } from '$lib/navLinks';
 
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { Heart, Menu, Search, User, X } from '@lucide/svelte';
+	import { Menu } from '@lucide/svelte';
 
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { fly, slide } from 'svelte/transition';
-	import { iso } from 'zod';
+	import { slide } from 'svelte/transition';
 
 	let scrolled = $state(false);
 
@@ -32,7 +29,9 @@
 <svelte:window bind:innerWidth />
 
 <header
-	class="sticky inset-x-0 top-0 z-80 bg-background px-6 pb-0 {isMenuOpen ? 'shadow-sm' : ''}"
+	class="fixed inset-x-0 top-0 z-80 w-dvw max-w-none bg-background px-6 pb-0 {isMenuOpen
+		? 'shadow-sm'
+		: ''}"
 	class:shadow-md={scrolled}
 	class:border-b={isMenuOpen}
 	class:pb-4={isMenuOpen}
@@ -63,7 +62,7 @@
 			</div>
 		{/if}
 	{:else}
-		<nav class="mx-auto flex w-full max-w-7xl items-center justify-between gap-16">
+		<nav class="mx-auto flex w-full max-w-7xl items-center justify-between">
 			<Button href="/" class="size-20 p-0" variant="ghost">
 				<img class="object-contain" src={logo} alt="Stride Logo" />
 			</Button>

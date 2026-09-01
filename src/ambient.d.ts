@@ -1,3 +1,4 @@
+import type { number } from 'zod';
 import type { ButtonVariant } from './components/ui/button';
 
 declare global {
@@ -32,6 +33,11 @@ declare global {
 	type FilterType = {
 		label: string;
 		isActive: boolean;
+	};
+
+	type ShoeSize = {
+		menSize: number;
+		womenSize: number;
 	};
 }
 
