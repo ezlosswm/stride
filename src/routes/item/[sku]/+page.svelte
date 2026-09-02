@@ -1,15 +1,26 @@
 <script lang="ts">
-	import { ArrowLeft, FilePenLine } from '@lucide/svelte';
+	import { ArrowLeft, Heart } from '@lucide/svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Card from '$lib/components/ui/card/index.js';
-	import * as Carousel from '$lib/components/ui/carousel/index.js';
-
-	import { formatPrice } from '$lib/kickFormatters.js';
+	import * as Table from '$lib/components/ui/table/index.js';
+	import { compareMarkets } from '$lib/kickFormatters.js';
 
 	let { data } = $props();
 	// const shoeId = $derived(params.shoeId);
 
-	const shoeInfo = $derived(data.collections);
+	const collection = $derived(data.collections);
+	console.log('collection', collection);
+
+	let isFavorite = $state<boolean>();
+
+	function handleFavoriteClick(e: Event, sku: string) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		let sneaker = collection.find((isFav: any) => isFav.sku === sku);
+
+		isFavorite = sneaker?.isFavorite;
+		isFavorite = !isFavorite;
+	}
 </script>
 
 <main class="mt-20">
@@ -20,77 +31,52 @@
 		</Button>
 	</div>
 
-	<img src={shoeInfo[0].imageUrl} alt={shoeInfo[0].name} class="h-full max-w-md rounded-xl" />
-	<h1>
-		{shoeInfo[0].name}
-	</h1>
+	<div class="grid grid-cols-1 gap-4 bg-white px-4">
+		<!-- grid one -->
+		<img src={collection[0].imageUrl} alt={collection[0].name} class="h-full max-w-md rounded-xl" />
 
-	<!-- <Card.Root class="mx-auto grid max-w-6xl grid-cols-1 md:w-3xl lg:grid-cols-2">
-		<Carousel.Root>
-			<Carousel.Content>
-				{#each shoeInfo.gallery_360 as src}
-					<Carousel.Item>
-						<img {src} alt={shoeInfo.title} />
-					</Carousel.Item>
-				{/each}
-			</Carousel.Content>
-		</Carousel.Root>
+		<!-- grid two -->
+		<div>
+			<div class="flex w-full items-center justify-between">
+				<h1 class="font-bold/tight text-xl">
+					{collection[0].name}
+				</h1>
 
-		<div class="grid">
-			<Card.Header class="row-span-1">
-				<Card.Title class="text-lg font-bold">
-					<h2>
-						{shoeInfo.title}
-					</h2>
-				</Card.Title>
-				<Card.Description>
-					{shoeInfo.brand}
-				</Card.Description>
-			</Card.Header>
-			<Card.Content class="row-span-auto space-y-5">
-				<div class="my-3 flex w-full justify-around">
-					<div>
-						<p class="font-medium text-muted-foreground">Lowest Price</p>
-						<p>
-							{formatPrice(shoeInfo.min_price)}
-						</p>
-					</div>
-					<div>
-						<p class="font-medium text-muted-foreground">Average Price</p>
-						<p>
-							{formatPrice(shoeInfo.avg_price)}
-						</p>
-					</div>
-					<div>
-						<p class="font-medium text-muted-foreground">Highest Price</p>
-						<p>
-							{formatPrice(shoeInfo.max_price)}
-						</p>
-					</div>
-				</div>
+				<Button
+					onclick={(e) => handleFavoriteClick(e, collection[0].sku)}
+					variant="outline"
+					size="icon-lg"
+					class="rounded-full {collection[0].isFavorite ? 'bg-danger-subtle' : ''}"
+				>
+					<Heart
+						class="transition-colors {collection[0].isFavorite ? 'fill-danger stroke-danger' : ''}"
+					/>
+				</Button>
+			</div>
 
-				<div class="my-5 flex w-full items-center gap-2 p-2 md:flex-row md:justify-around">
-					<Button
-						href={shoeInfo.link}
-						class="flex-1"
-						size="lg"
-						target="_blank"
-						rel="noopener noreferrer">Buy Now For {formatPrice(shoeInfo.min_price)}</Button
-					>
-				</div>
-
-				<section>
-					<div class="mb-5">
-						<h4 class="flex gap-1.5 text-base font-medium">
-							<FilePenLine class="text-primary" />
-							About this sneaker
-						</h4>
-					</div>
-					<p>
-						{@html shoeInfo.description}
-					</p>
-				</section>
-			</Card.Content>
+			<p class="text-xs font-medium">
+				{collection[0].colorway}
+			</p>
+			<p class="text-xs text-muted-foreground">
+				Style Code: {collection[0].sku}
+			</p>
 		</div>
-	</Card.Root> -->
+
+		<!-- grid three -->
+		<div class="rounded-xl border p-4">
+			<h4 class="font-heading text-sm/relaxed font-medium">Price Comparison</h4>
+
+			<Table.Root>
+				<Table.Body>
+					<Table.Row>
+						<Table.Cell class="w-full">{collection[0].markets[0].marketplace}</Table.Cell>
+						<Table.Cell class="w-1/2">{collection[0].markets[0].price}</Table.Cell>
+						<Table.Cell>
+							<Button size="lg" href={collection[0].markets[0].url} class="p-4">Buy Now</Button>
+						</Table.Cell>
+					</Table.Row>
+				</Table.Body>
+			</Table.Root>
+		</div>
+	</div>
 </main>

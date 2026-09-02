@@ -1,7 +1,9 @@
 const defaultShoeSize = 10;
 
 export function formatPrice(price: number | null): string {
-	return `$${price?.toFixed(2)}`;
+	if (price === null) return 'Unavailable';
+
+	return `$${price.toFixed(2)}`;
 }
 
 // Test function to simulate favoriting a shoe
@@ -9,24 +11,18 @@ export function testLikeButton(shoeId: string): void {
 	console.log(`Like button clicked for shoe ID: ${shoeId}`);
 }
 
-export function isAdultGoatProduct(product: any) {
-	const text = `${product.name} ${product.nickname ?? ''}`.toLowerCase();
-
-	return !(
-		text.includes(' gs ') ||
-		text.endsWith(' gs') ||
-		text.includes('grade school') ||
-		text.includes(' ps ') ||
-		text.endsWith(' ps') ||
-		text.includes('preschool') ||
-		text.includes(' td ') ||
-		text.endsWith(' td') ||
-		text.includes('toddler')
-	);
-}
-
 export function normalizeSKU(value: string) {
 	return value.trim().toUpperCase().replace(/\s+/g, '-');
+}
+
+export function hasStockXSize(product: any, size: number) {
+	return product.variants?.some(
+		(variant: any) =>
+			Number(variant.size) === size &&
+			variant.hidden !== true &&
+			variant.total_asks > 0 &&
+			variant.lowest_ask > 0
+	);
 }
 
 function getStockXPriceForSize(
@@ -42,8 +38,8 @@ function getStockXPriceForSize(
 	return variant?.lowest_ask ?? null;
 }
 
-export function normalizeStockX(product: any): Sneaker {
-	const price = getStockXPriceForSize(product.variants, defaultShoeSize);
+export function normalizeStockX(product: any, size: number = defaultShoeSize): Sneaker {
+	const price = getStockXPriceForSize(product.variants, size);
 
 	return {
 		sku: normalizeSKU(product.sku),
@@ -65,6 +61,29 @@ export function normalizeStockX(product: any): Sneaker {
 	};
 }
 
+export function isAdultGoatProduct(product: any) {
+	const text = `${product.name} ${product.nickname ?? ''}`.toLowerCase();
+
+	return !(
+		text.includes(' gs ') ||
+		text.endsWith(' gs') ||
+		text.includes('grade school') ||
+		text.includes(' ps ') ||
+		text.endsWith(' ps') ||
+		text.includes('preschool') ||
+		text.includes(' td ') ||
+		text.endsWith(' td') ||
+		text.includes('toddler')
+	);
+}
+
+export function hasGoatSize(product: any, size: number) {
+	return product.variants?.some(
+		(variant: any) =>
+			Number(variant.size) === size && variant.available === true && variant.lowest_ask > 0
+	);
+}
+
 function getGoatPriceForSize(
 	variants: { size: string; lowest_ask: number; available: boolean }[],
 	size: number
@@ -74,8 +93,8 @@ function getGoatPriceForSize(
 	return variant?.lowest_ask ?? null;
 }
 
-export function normalizeGoat(product: any): Sneaker {
-	const price = getGoatPriceForSize(product.variants, defaultShoeSize);
+export function normalizeGoat(product: any, size: number = defaultShoeSize): Sneaker {
+	const price = getGoatPriceForSize(product.variants, size);
 
 	return {
 		sku: normalizeSKU(product.sku),

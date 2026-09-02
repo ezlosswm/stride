@@ -17,6 +17,7 @@
 	}
 
 	let { collection } = $props();
+	const marketComparison = $derived(compareMarkets(collection));
 </script>
 
 <article
@@ -59,10 +60,10 @@
 
 			<div class="shrink-0 text-end">
 				<p class="font-heading text-2xl font-bold">
-					{formatPrice(compareMarkets(collection).lowerMarket?.price)}
+					{formatPrice(marketComparison.lowerMarket?.price)}
 				</p>
 				<p class="mt-1 text-xs text-muted-foreground">
-					On {compareMarkets(collection).lowerMarket.marketplace}
+					On {marketComparison.lowerMarket.marketplace}
 				</p>
 			</div>
 		</div>
@@ -74,11 +75,11 @@
 			{#if collection.markets.length < 2}
 				<p class="text-xs">
 					Only available on <span class="font-semibold"
-						>{compareMarkets(collection).lowerMarket.marketplace}</span
+						>{marketComparison.lowerMarket.marketplace}</span
 					>
 				</p>
 
-				<Button href={compareMarkets(collection).lowerMarket.url} target="_blank" variant="ghost">
+				<Button href={marketComparison.lowerMarket.url} target="_blank" variant="ghost">
 					<span class="font-medium text-primary"> View Full Details </span>
 					<ArrowUpRight class="size-4 stroke-primary" />
 				</Button>
@@ -86,11 +87,11 @@
 				<p class="text-xs">
 					Save
 					<span class="font-semibold text-accent">
-						{formatPrice(compareMarkets(collection).priceDifference)}
+						{formatPrice(marketComparison.priceDifference)}
 					</span>
 					on
 					<span class="font-semibold">
-						{compareMarkets(collection).lowerMarket.marketplace}
+						{marketComparison.lowerMarket.marketplace}
 					</span>
 				</p>
 				<Drawer {collection} />

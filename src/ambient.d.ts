@@ -26,6 +26,15 @@ declare global {
 		markets: Marketplace[];
 	};
 
+	// type Filters = {
+	// 	currency: string,
+	// 	market: string,
+	// 	filters: string,
+	// 	displayPrices: boolean,
+	// 	displayVariants: boolean,
+	// 	limit: number
+	// }
+
 	type SortType = {
 		value: string;
 		label: string;
@@ -39,6 +48,7 @@ declare global {
 	type ShoeSize = {
 		menSize: number;
 		womenSize: number;
+		value: string;
 	};
 }
 

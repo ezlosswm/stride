@@ -8,7 +8,7 @@
 	import { Search } from '@lucide/svelte';
 
 	let { data } = $props();
-	const collections = $derived(data.collections);
+	let collections = $state(data.collections);
 
 	let value = $state<string>('');
 	const triggerContent = $derived(
@@ -16,9 +16,22 @@
 	);
 
 	let shoeSizeValue = $state<string>('');
-	const shoeSizeTrigger = $derived(
-		shoeSizes.find((s) => s.menSize.toString() === shoeSizeValue)?.menSize ?? 'US M 10 / W 11.5'
-	);
+	const shoeSizeTrigger = $derived(shoeSizes.find((s) => s.menSize.toString() === shoeSizeValue));
+
+	async function filterKicksBySize(size: any) {
+		const response = await fetch(`/filterKicks?size=${encodeURIComponent(size)}`);
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch filtered kicks: ${response.statusText}`);
+		}
+
+		const data = await response.json();
+		console.log('Before:', collections.length);
+		console.log('After:', data.length);
+		console.log('Products:', data);
+
+		collections = data;
+	}
 </script>
 
 <Hero />
@@ -54,12 +67,26 @@
 					<div class="mt-5 flex w-full justify-between gap-4 md:justify-end">
 						<div class="flex items-center gap-2">
 							<p class="text-xs font-semibold text-muted-foreground">Size</p>
-							<Select.Root type="single" bind:value>
-								<Select.Trigger>{shoeSizeTrigger}</Select.Trigger>
+							<Select.Root
+								type="single"
+								bind:value={shoeSizeValue}
+								onValueChange={(value) => {
+									if (value) {
+										filterKicksBySize(value);
+									}
+								}}
+							>
+								<Select.Trigger>
+									{#if shoeSizeTrigger}
+										M {shoeSizeTrigger.menSize} / W {shoeSizeTrigger.womenSize}
+									{:else}
+										M 10 / W 11.5
+									{/if}
+								</Select.Trigger>
 								<Select.Content>
 									<Select.Group>
 										{#each shoeSizes as shoeSize (shoeSize.menSize)}
-											<Select.Item value={shoeSize.menSize.toString()}
+											<Select.Item value={shoeSize.menSize.toString()} label={shoeSize.value}
 												>M {shoeSize.menSize} / W {shoeSize.womenSize}</Select.Item
 											>
 										{/each}
