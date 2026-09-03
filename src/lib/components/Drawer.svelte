@@ -70,7 +70,7 @@
 			<Sheet.Description class="mt-7 space-y-3">
 				<div>
 					<h4 class="font-heading text-lg font-bold text-foreground">Price Comparison</h4>
-					Save<span class="font-semibold">
+					Save <span class="font-semibold">
 						{formatPrice(compareMarkets(collection).priceDifference)}
 					</span>
 					on {compareMarkets(collection).lowerMarket.marketplace}
