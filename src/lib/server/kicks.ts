@@ -14,7 +14,7 @@ export const getStockXProduct = async (sku: string) => {
 	});
 
 	if (!res.ok) {
-		console.error('GOAT error: ', res.status, await res.text());
+		console.error('StockX error: ', res.status, await res.text());
 
 		return {
 			collections: []
@@ -42,9 +42,44 @@ export const getStockXProducts = async () => {
 	});
 
 	const stockXData = await res.json();
+	if (!res.ok) {
+		console.error('StockX get list of products error: ', stockXData);
+
+		return {
+			collections: []
+		};
+	}
 
 	return {
-		collections: stockXData.data
+		collections: stockXData.data ?? []
+	};
+};
+
+export const searchStockXProducts = async (query: string) => {
+	const params = new URLSearchParams({
+		query,
+		currency: 'USD',
+		market: 'US',
+		filters: 'product_type = "sneakers" AND gender = "men"',
+		'display[prices]': 'true',
+		'display[variants]': 'true',
+		limit: '20'
+	});
+	const res = await fetch(`https://api.kicks.dev/v3/stockx/products?${params.toString()}`, {
+		headers: { Authorization: `${KICKS_API_KEY}` }
+	});
+
+	const stockXData = await res.json();
+	if (!res.ok) {
+		console.error('StockX seach error: ', stockXData);
+
+		return {
+			collections: []
+		};
+	}
+
+	return {
+		collections: stockXData.data ?? []
 	};
 };
 
@@ -61,6 +96,7 @@ export const getGoatProduct = async (sku: string) => {
 		headers: { Authorization: `${KICKS_API_KEY}` }
 	});
 
+	const goatData = await res.json();
 	if (!res.ok) {
 		console.error('GOAT error: ', res.status, await res.text());
 
@@ -68,8 +104,6 @@ export const getGoatProduct = async (sku: string) => {
 			collections: []
 		};
 	}
-
-	const goatData = await res.json();
 
 	return {
 		collections: goatData.data ?? []
@@ -90,8 +124,41 @@ export const getGoatProducts = async () => {
 	});
 
 	const goatData = await res.json();
+	if (!res.ok) {
+		console.error('GOAT get list of products error: ', goatData);
+		return {
+			collections: []
+		};
+	}
 
 	return {
-		collections: goatData.data
+		collections: goatData.data ?? []
+	};
+};
+
+export const searchGoatProducts = async (query: string) => {
+	const params = new URLSearchParams({
+		query,
+		currency: 'USD',
+		filters: 'category = "shoes"',
+		'display[prices]': 'true',
+		'display[variants]': 'true',
+		limit: '20'
+	});
+
+	const res = await fetch(`https://api.kicks.dev/v3/goat/products?${params.toString()}`, {
+		headers: { Authorization: `${KICKS_API_KEY}` }
+	});
+
+	const goatData = await res.json();
+	if (!res.ok) {
+		console.error('GOAT search error: ', goatData);
+		return {
+			collections: []
+		};
+	}
+
+	return {
+		collections: goatData.data ?? []
 	};
 };

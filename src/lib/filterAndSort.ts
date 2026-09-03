@@ -17,14 +17,14 @@ export const filterTypes: FilterType[] = [
 	}
 ];
 
-export const sortTypes: SortType[] = [
+export const sortTypes = [
 	{
-		value: 'lowest_price',
-		label: 'Lowest Price'
+		label: 'Lowest Price',
+		value: 'lowest'
 	},
 	{
-		value: 'highest_price',
-		label: 'Highest Price'
+		label: 'Highest Price',
+		value: 'highest'
 	}
 ];
 

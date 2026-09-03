@@ -53,7 +53,7 @@
 		</nav>
 
 		{#if isMenuOpen}
-			<div transition:slide={{ duration: 200 }} class="flex flex-col gap-4">
+			<div transition:slide={{ duration: 200 }} class="mt-4 flex flex-col gap-4 sm:mt-0">
 				{#each navLinks as nav (nav.title)}
 					<Button variant={nav.variant} size="lg" class="w-full justify-start" href={nav.href}
 						>{nav.title}</Button
@@ -72,8 +72,6 @@
 					<Button variant={nav.variant} href={nav.href}>{nav.title}</Button>
 				{/each}
 			</div>
-
-			<Button href="/auth/register" size="lg">Get Started</Button>
 		</nav>
 	{/if}
 </header>

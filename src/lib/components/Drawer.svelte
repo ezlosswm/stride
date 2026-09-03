@@ -2,7 +2,7 @@
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
 	import * as Sheet from '$lib/components/ui/sheet/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
-	import { ArrowUpRight, ChevronLeft, Heart } from '@lucide/svelte';
+	import { ArrowUpRight, ChevronLeft, CircleAlert, Heart } from '@lucide/svelte';
 	import { compareMarkets, formatPrice } from '$lib/kickFormatters';
 	import Badge from './ui/badge/badge.svelte';
 	let { collection } = $props();
@@ -114,10 +114,14 @@
 				</Table.Root>
 			</Sheet.Description>
 		</Sheet.Header>
-		<Sheet.Footer>
-			<Button href="item/{collection.sku}" class="py-6 text-base" variant="default" size="lg"
-				>View Full Details</Button
-			>
+		<Sheet.Footer class="bg-warning-subtle text-warning-foreground">
+			<div class="flex gap-2">
+				<CircleAlert />
+				<p>
+					Prices are illustrative market snapshots for product research, not live checkout quotes.
+					Always confirm the final total at the marketplace.
+				</p>
+			</div>
 		</Sheet.Footer>
 	</Sheet.Content>
 </Sheet.Root>
