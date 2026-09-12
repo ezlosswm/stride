@@ -8,6 +8,16 @@
 	import { Search, LoaderCircle } from '@lucide/svelte';
 	import { appendUniqueProducts, debounce, getLowestPrice } from '$lib';
 
+	const schema = {
+		'@context': 'https://schema.org',
+		'@type': 'WebApplication',
+		name: 'STRIDE',
+		url: 'https://stride-seven-beta.vercel.app/',
+		description: 'Compare sneaker prices across GOAT and StockX to find the better price.',
+		applicationCategory: 'ShoppingApplication',
+		operatingSystem: 'Web'
+	};
+
 	let isLoading = $state<boolean>(false);
 
 	let { data } = $props();
@@ -140,6 +150,31 @@
 	}
 </script>
 
+<svelte:head>
+	<title>STRIDE — Compare Sneaker Prices on GOAT & StockX</title>
+
+	<meta
+		name="description"
+		content="Compare sneaker prices across GOAT and StockX. Search by sneaker, brand, colorway or SKU and find the better price for your size."
+	/>
+
+	<link rel="canonical" href="https://stride-seven-beta.vercel.app/" />
+
+	<meta property="og:title" content="STRIDE — Compare Sneaker Prices on GOAT & StockX" />
+
+	<meta
+		property="og:description"
+		content="Search and compare sneaker prices across GOAT and StockX to find the better deal."
+	/>
+
+	<meta property="og:type" content="website" />
+
+	<meta property="og:url" content="https://stride-seven-beta.vercel.app/" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	{@html `<script type="application/ld+json">${JSON.stringify(schema)}<\/script>`}
+</svelte:head>
+
 <Hero />
 
 <div id="collections" class="border-t">
@@ -266,5 +301,17 @@
 				Load More
 			</Button>
 		{/if}
+	</section>
+
+	<!-- Informational -->
+	<section class="px-4 pt-16">
+		<div class="mx-auto max-w-xl space-y-3 text-center">
+			<h3 class="font-medium">Compare GOAT and StockX prices in one place</h3>
+			<p class="text-sm text-muted-foreground">
+				STRIDE helps sneaker buyers compare asking prices across GOAT and StockX without checking
+				each marketplace individually. Choose your size, search for a sneaker, and see where it's
+				currently listed for less.
+			</p>
+		</div>
 	</section>
 </div>
