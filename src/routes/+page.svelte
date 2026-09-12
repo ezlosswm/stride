@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { shoeSizes, sortTypes } from '$lib/filterAndSort.js';
 	import Hero from '$lib/components/Hero.svelte';
 	import Collections from '$lib/components/Collections.svelte';
-	import { Search } from '@lucide/svelte';
+	import { Search, LoaderCircle } from '@lucide/svelte';
+	import { appendUniqueProducts, debounce, getLowestPrice } from '$lib';
 
 	let isLoading = $state<boolean>(false);
 
@@ -14,15 +16,17 @@
 	let sortValue = $state('lowest');
 	let searchValue = $state('');
 
-	async function searchProducts(query: string) {
-		if (!query.trim()) {
-			return;
-		}
+	let page = $state<number>(1);
+	let isLoadingMore = $state<boolean>(false);
+	let hasMore = $state<boolean>(true);
 
+	const limit = 20;
+
+	async function searchProducts(query: string) {
 		try {
 			isLoading = true;
 			const response = await fetch(
-				`/search?q=${encodeURIComponent(query)}&size=${shoeSizeValue || 10}`
+				`/search?q=${encodeURIComponent(query)}&size=${shoeSizeValue || 10}&page=1&limit=${limit}`
 			);
 
 			if (!response.ok) {
@@ -40,18 +44,41 @@
 		}
 	}
 
-	function debounce(callback: any, delay = 600) {
-		let timeoutId: ReturnType<typeof setTimeout> | undefined;
+	async function loadMore() {
+		if (isLoadingMore || !hasMore) return;
 
-		return function (this: any, ...args: any[]) {
-			if (timeoutId !== undefined) {
-				clearTimeout(timeoutId);
+		try {
+			isLoadingMore = true;
+
+			const nextPage = page + 1;
+
+			const endpoint = searchValue.trim()
+				? `/search?q=${encodeURIComponent(searchValue)}&size=${shoeSizeValue || 10}&page=${nextPage}&limit=${limit}`
+				: `/products?size=${shoeSizeValue || 10}&page=${nextPage}&limit=${limit}`;
+
+			const response = await fetch(endpoint);
+
+			if (!response.ok) {
+				console.error('Failed to load more products');
+				return;
 			}
 
-			timeoutId = setTimeout(() => {
-				callback.apply(this, args);
-			}, delay);
-		};
+			const newProducts = await response.json();
+
+			console.log('newProducts:', newProducts);
+
+			if (newProducts.length === 0) {
+				hasMore = false;
+				return;
+			}
+
+			collections = appendUniqueProducts(collections, newProducts);
+			page = nextPage;
+		} catch (error) {
+			console.error('Load more error:', error);
+		} finally {
+			isLoadingMore = false;
+		}
 	}
 
 	const debounceSearch = debounce(searchProducts);
@@ -110,14 +137,6 @@
 		const data = await response.json();
 
 		collections = data;
-	}
-
-	function getLowestPrice(collection: Sneaker): number | null {
-		const prices = collection.markets
-			.map((market) => market.price)
-			.filter((price): price is number => price !== null);
-
-		return prices.length ? Math.min(...prices) : null;
 	}
 </script>
 
@@ -218,6 +237,34 @@
 					Try another sneaker, brand, colorway or SKU
 				</p>
 			</div>
+		{/if}
+	</section>
+	<section class="mx-auto grid max-w-7xl gap-4 px-4">
+		{#if isLoadingMore}
+			<Button
+				onclick={loadMore}
+				disabled={isLoadingMore}
+				class="mx-auto h-9 w-full bg-info-foreground text-info hover:bg-info-subtle md:w-1/3"
+			>
+				<LoaderCircle class="mr-2 size-4 animate-spin" />
+				Loading more sneakers
+			</Button>
+		{:else if !hasMore}
+			<Button
+				onclick={loadMore}
+				disabled={true}
+				class="mx-auto h-9 w-full bg-danger-subtle text-danger md:w-1/3"
+			>
+				No more sneakers to show
+			</Button>
+		{:else}
+			<Button
+				onclick={loadMore}
+				disabled={isLoadingMore}
+				class="mx-auto h-9 w-full bg-info-foreground text-info hover:bg-info-subtle md:w-1/3"
+			>
+				Load More
+			</Button>
 		{/if}
 	</section>
 </div>

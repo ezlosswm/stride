@@ -19,9 +19,12 @@ export async function GET({ url }) {
 		return json([]);
 	}
 
+	const page = Number(url.searchParams.get('page')) || 1;
+	const limit = Number(url.searchParams.get('limit')) || 20;
+
 	const [stockxResponse, goatResponse] = await Promise.all([
-		searchStockXProducts(query),
-		searchGoatProducts(query)
+		searchStockXProducts(query, page, limit),
+		searchGoatProducts(query, page, limit)
 	]);
 
 	const stockx = stockxResponse.collections
