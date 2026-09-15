@@ -1,20 +1,8 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { ArrowUpRight, Heart } from '@lucide/svelte';
+	import { ArrowUpRight } from '@lucide/svelte';
 	import { compareMarkets, formatPrice } from '$lib/kickFormatters';
 	import Drawer from './Drawer.svelte';
-
-	let isFavorite = $state<boolean>();
-
-	function handleFavoriteClick(e: Event, sku: string) {
-		e.preventDefault();
-		e.stopPropagation();
-
-		let sneaker = collection.find((isFav: any) => isFav.sku === sku);
-
-		isFavorite = sneaker?.isFavorite;
-		isFavorite = !isFavorite;
-	}
 
 	let { collection } = $props();
 	const marketComparison = $derived(compareMarkets(collection));
@@ -27,16 +15,6 @@
 		<div class="rounded-full border bg-muted px-3 py-1">
 			<p class="font-heading text-xs font-bold">{collection.brand}</p>
 		</div>
-	</div>
-	<div class="absolute top-4 right-4 z-20">
-		<Button
-			onclick={(e) => handleFavoriteClick(e, collection.sku)}
-			variant="outline"
-			size="icon-lg"
-			class="rounded-full {collection.isFavorite ? 'bg-danger-subtle' : ''}"
-		>
-			<Heart class="transition-colors {collection.isFavorite ? 'fill-danger stroke-danger' : ''}" />
-		</Button>
 	</div>
 	<div class="grid h-full grid-rows-[220px_1fr_auto]">
 		<div class="flex min-w-0 items-center justify-center px-4">

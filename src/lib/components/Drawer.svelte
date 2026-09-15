@@ -7,18 +7,6 @@
 	import Badge from './ui/badge/badge.svelte';
 	let { collection } = $props();
 
-	let isFavorite = $state<boolean>();
-
-	function handleFavoriteClick(e: Event, sku: string) {
-		e.preventDefault();
-		e.stopPropagation();
-
-		let sneaker = collection.find((isFav: any) => isFav.sku === sku);
-
-		isFavorite = sneaker?.isFavorite;
-		isFavorite = !isFavorite;
-	}
-
 	const comparison = $derived(compareMarkets(collection));
 	function isLowestAsk(markets: Marketplace) {
 		return comparison.lowerMarket?.marketplace === markets.marketplace;
@@ -48,17 +36,6 @@
 						<h2 class="font-heading text-2xl/tight font-bold">{collection.name}</h2>
 						<p class="text-sm text-muted-foreground">{collection.colorway}</p>
 					</div>
-
-					<Button
-						onclick={(e) => handleFavoriteClick(e, collection.sku)}
-						variant="outline"
-						size="icon-lg"
-						class="rounded-full {collection.isFavorite ? 'bg-danger-subtle' : ''}"
-					>
-						<Heart
-							class="transition-colors {collection.isFavorite ? 'fill-danger stroke-danger' : ''}"
-						/>
-					</Button>
 				</div>
 			</Sheet.Title>
 			<img
@@ -70,7 +47,7 @@
 			<Sheet.Description class="mt-7 space-y-3">
 				<div>
 					<h4 class="font-heading text-lg font-bold text-foreground">Price Comparison</h4>
-					Save <span class="font-semibold">
+					Save<span class="font-semibold">
 						{formatPrice(compareMarkets(collection).priceDifference)}
 					</span>
 					on {compareMarkets(collection).lowerMarket.marketplace}
