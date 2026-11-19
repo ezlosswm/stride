@@ -1,4 +1,5 @@
-// place files you want to import through the `$lib` alias in this folder.
+import type { Product } from './models/product';
+
 export function appendUniqueProducts(current: Sneaker[], incoming: Sneaker[]): Sneaker[] {
 	const products = new Map<string, Sneaker>();
 
@@ -35,4 +36,8 @@ export function getLowestPrice(collection: Sneaker): number | null {
 		.filter((price): price is number => price !== null);
 
 	return prices.length ? Math.min(...prices) : null;
+}
+
+export function getSkuList(productList: Product[]): string[] {
+	return productList.map((product) => product.sku);
 }

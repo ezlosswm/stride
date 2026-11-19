@@ -54,6 +54,25 @@
 		}
 	}
 
+	async function loadCatalog() {
+		try {
+			const response = await fetch('/catalog');
+			if (!response.ok) {
+				console.error('Error ');
+			}
+
+			const collection = await response.json();
+
+			console.log('Goat catalog', collection);
+		} catch (err) {
+			console.error('Load more error:', err);
+		}
+	}
+
+	$effect(() => {
+		loadCatalog();
+	});
+
 	async function loadMore() {
 		if (isLoadingMore || !hasMore) return;
 
@@ -74,8 +93,6 @@
 			}
 
 			const newProducts = await response.json();
-
-			console.log('newProducts:', newProducts);
 
 			if (newProducts.length === 0) {
 				hasMore = false;
