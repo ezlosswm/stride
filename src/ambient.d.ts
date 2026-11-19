@@ -2,6 +2,9 @@ import type { number } from 'zod';
 import type { ButtonVariant } from './components/ui/button';
 
 declare global {
+	interface Window {
+		gtag?: (command: string, action: string, params?: Record<string, unknown>) => void;
+	}
 	type NavLinks = {
 		title: string;
 		href: string;
