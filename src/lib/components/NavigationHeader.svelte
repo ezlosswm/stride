@@ -29,7 +29,7 @@
 <svelte:window bind:innerWidth />
 
 <header
-	class="fixed inset-x-0 top-0 z-80 w-dvw max-w-none bg-background px-6 pb-0 {isMenuOpen
+	class="fixed inset-x-0 top-0 z-80 h-20 w-dvw max-w-none bg-background px-6 pb-0 {isMenuOpen
 		? 'shadow-sm'
 		: ''}"
 	class:shadow-md={scrolled}
