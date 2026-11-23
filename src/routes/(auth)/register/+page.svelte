@@ -1,13 +1,12 @@
 <script>
-	import google from '$lib/assets/google-icon-logo.svg';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Card from '$lib/components/ui/card';
 	import RegistrationForm from '$lib/forms/RegistrationForm.svelte';
 	import GoogleIcon from '$lib/GoogleIcon.svelte';
 </script>
 
-<main class="relative mt-20 grid h-[calc(100vh-5rem)] place-content-center">
-	<Card.Root>
+<main class="relative mt-20 h-[calc(100vh-5rem)] place-content-center px-5">
+	<Card.Root class="mx-auto max-w-lg">
 		<Card.Header class="mb-3">
 			<Card.Title class="text-xl font-semibold">Create account</Card.Title>
 			<Card.Description>Create your account.</Card.Description>
