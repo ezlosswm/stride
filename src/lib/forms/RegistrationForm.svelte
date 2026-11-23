@@ -11,7 +11,7 @@
 		validators: zod4(regitrationFormSchema)
 	});
 
-	const { form: formData, enhance } = form;
+	const { form: formData, enhance, message: formMessage } = form;
 </script>
 
 <form method="POST" use:enhance>
@@ -90,6 +90,15 @@
 			</Form.Control>
 			<Form.FieldErrors />
 		</Form.Field>
+
+		{#if $formMessage}
+			<div
+				role="alert"
+				class="rounded border border-destructive/30 bg-danger-subtle p-3 text-sm text-destructive"
+			>
+				{$formMessage}
+			</div>
+		{/if}
 
 		<div class="mt-7">
 			<Button type="submit" size="lg" class="w-full">Submit</Button>
