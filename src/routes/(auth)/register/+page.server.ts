@@ -3,9 +3,7 @@ import type { PageServerLoad } from './$types';
 import { regitrationFormSchema } from '$lib/schemas/registration';
 import { zod4 } from 'sveltekit-superforms/adapters';
 import { redirect, type Actions } from '@sveltejs/kit';
-import { AuthService } from '$lib/services/AuthService';
 import { createAuthService } from '$lib/server/auth';
-import { goto } from '$app/navigation';
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -48,6 +46,6 @@ export const actions: Actions = {
 			return message(form, result.message, { status });
 		}
 
-		redirect(303, '/');
+		redirect(303, '/dashboard');
 	}
 };

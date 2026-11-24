@@ -10,7 +10,7 @@ export const regitrationFormSchema = z
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: 'Passwords do not match.',
-		path: ['confirm']
+		path: ['confirmPassword']
 	});
 
 export type RegistrationFormSchema = typeof regitrationFormSchema;

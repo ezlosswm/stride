@@ -78,7 +78,7 @@
 			<Form.Control>
 				{#snippet children({ props })}
 					<div class="flex flex-col gap-2">
-						<Form.Label>Password</Form.Label>
+						<Form.Label>Confirm password</Form.Label>
 						<PasswordInput
 							bind:value={$formData.confirmPassword}
 							{...props}
