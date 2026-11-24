@@ -41,3 +41,11 @@ export function getLowestPrice(collection: Sneaker): number | null {
 export function getSkuList(productList: Product[]): string[] {
 	return productList.map((product) => product.sku);
 }
+
+export function trackSearch(query: string) {
+	if (typeof window === 'undefined' || !window.gtag) return;
+
+	window.gtag('event', 'view_search_results', {
+		search_term: query
+	});
+}

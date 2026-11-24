@@ -6,7 +6,7 @@
 	import Hero from '$lib/components/Hero.svelte';
 	import Collections from '$lib/components/Collections.svelte';
 	import { Search, LoaderCircle } from '@lucide/svelte';
-	import { appendUniqueProducts, debounce, getLowestPrice } from '$lib';
+	import { appendUniqueProducts, debounce, getLowestPrice, trackSearch } from '$lib';
 
 	const schema = {
 		'@context': 'https://schema.org',
@@ -33,6 +33,16 @@
 	const limit = 20;
 
 	async function searchProducts(query: string) {
+		const searchQuery = query.trim();
+
+		if (!query) return;
+
+		const url = new URL(window.location.href);
+		url.searchParams.set('q', query);
+
+		window.history.pushState({}, '', url);
+
+		trackSearch(query);
 		try {
 			isLoading = true;
 			const response = await fetch(
